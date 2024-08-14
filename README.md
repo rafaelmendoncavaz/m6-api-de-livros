@@ -1,14 +1,87 @@
-### Entrega M4 - API de livros
-Ao clonar, rode o comando npm install para instalar as dependências
+# Requisições e Respostas
 
-Você poderá iniciar a aplicação rodando o comando:
+## POST /books
 
+### Modelo de requisição
+```json
+{
+	"name": "Harry Potter",
+	"pages": 123,
+	"category": "fantasia" 
+}
 ```
-npm run dev
+### Padrão de Resposta (201)
+```json
+{
+	"id": 1,
+	"name": "Harry Potter",
+	"pages": 123,
+	"category": "fantasia",
+	"createdAt": "2023-10-06T13:14:21.752Z",
+	"updatedAt": "2023-10-06T13:14:21.752Z"
+}
+```
+## GET /books
+
+### Padrão de Resposta (200)
+```json
+[
+	{
+		"id": 1,
+		"name": "Harry Potter",
+		"pages": 123,
+		"category": "fantasia",
+		"createdAt": "2023-10-06T13:14:21.752Z",
+		"updatedAt": "2023-10-06T13:14:21.752Z"
+	}
+]
 ```
 
-Você poderá rodar os testes automáticos preparádos para essa aplicação rodando o comando:
+## GET /books/:id
 
+### Padrão de Resposta (200)
+```json
+[
+	{
+		"id": 1,
+		"name": "Harry Potter",
+		"pages": 123,
+		"category": "fantasia",
+		"createdAt": "2023-10-06T13:14:21.752Z",
+		"updatedAt": "2023-10-06T13:14:21.752Z"
+	}
+]
 ```
-npm run test
+# PATCH /books/:id
+
+### Modelo de requisição (total ou parcial)
+```json
+{
+	"name": "Harry Potter",
+	"pages": 321,
+	"category": "fantasia" 
+}
+// ou
+{
+	"pages": 321
+}
 ```
+### Padrão de Resposta (200)
+```json
+{
+	"id": 1,
+	"name": "Harry Potter",
+	"pages": 321,
+	"category": "fantasia",
+	"createdAt": "2023-10-06T13:14:21.752Z",
+	"updatedAt": "2023-10-06T13:14:21.752Z"
+}
+```
+
+# DELETE /books/:id
+
+### Modelo de requisição (total ou parcial)
+```json
+// Não há corpo de requisição
+```
+### Padrão de Resposta (204)
