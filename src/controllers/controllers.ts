@@ -13,7 +13,8 @@ class Controllers implements ControllerMethods {
   }
 
   getMany(req: Request, res: Response): Response {
-    const getBooks = book.getMany()
+    const search = req.query.search as string
+    const getBooks = book.getMany(search)
 
     return res.status(200).json(getBooks)
   }

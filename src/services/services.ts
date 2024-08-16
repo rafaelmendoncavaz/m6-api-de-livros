@@ -1,5 +1,5 @@
 import generateId, { booksDatabase } from "../database/database";
-import type { Book, CreateBook, ServiceMethods } from "../interfaces/interfaces";
+import type { Book, CreateBook, ServiceMethods, UpdateBook } from "../interfaces/interfaces";
 
 class Services implements ServiceMethods {
 
@@ -15,8 +15,10 @@ class Services implements ServiceMethods {
     return newBook
   }
 
-  getMany(): Book[] {
-    return booksDatabase
+  getMany(search?: string): Book[] {
+    const filterByName = search ? booksDatabase.filter(book => book.name.toLowerCase().includes(search.toLowerCase())) : booksDatabase
+
+    return filterByName
   }
 
   getById(id: string): Book {
@@ -25,7 +27,7 @@ class Services implements ServiceMethods {
     return findBook
   }
 
-  update(id: string, body: Partial<CreateBook>): Book {
+  update(id: string, body: UpdateBook): Book {
     const findBook = booksDatabase.find(book => book.id === Number(id)) as Book
     const updatedBook = {
       ...findBook,
